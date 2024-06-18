@@ -1,19 +1,31 @@
+# Ideas:
+	# 1. a
+	# 2. b
+
 import sys
 
-# Ideas:
-    # 1. a
-    # 2. b
-
-
 class Solution:
-    def solution(self, nums, k):
+    def solution(self, prices):
+        max = 0
+        for i in range(1, len(prices)):
+            if prices[i] > prices[max]:
+                max = i
 
-        return nums
+        min = 0
+        for i in range(0, max):
+            if prices[i] > prices[max]:
+                max = i
+            
+
+        if max == min:
+            return 0
+        else:
+            return prices[max]-prices[min]
 
 
 def main():
     input_lines = sys.stdin.readlines()
-    num_vars = 2 # Number of variables in a test case
+    num_vars = 1 # Number of variables in a test case
 
     # Process each test case
     results = []
@@ -23,16 +35,14 @@ def main():
         list1 = list1[1:-1].split(',') 	# String to a list of strings
         list1 = [int(num) for num in list1] 	# Convert list of strings to list of integers
 
-        # For single integer input
-        k = int(input_lines[i + 1].strip())
-
         # For Solution class
         solution = Solution()
-        result = solution.solution(list1, k) 	# Change the function and the parameter
+        result = solution.solution(list1) 	# Change the function and the parameter
         results.append(result)
 
     for result in results:
         print(result)
+
 
 if __name__ == '__main__':
     main()
