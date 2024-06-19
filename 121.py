@@ -6,22 +6,19 @@ import sys
 
 class Solution:
     def solution(self, prices):
-        max = 0
+
+        buy = 0
+        max_profit = 0
+
         for i in range(1, len(prices)):
-            if prices[i] > prices[max]:
-                max = i
-
-        min = 0
-        for i in range(0, max):
-            if prices[i] > prices[max]:
-                max = i
+            profit = prices[i] - prices[buy]
+            print(buy, i, profit, max_profit) 
+            if profit >= max_profit:
+                max_profit = profit
+            elif profit < 0:
+                buy = i
             
-
-        if max == min:
-            return 0
-        else:
-            return prices[max]-prices[min]
-
+        return max_profit
 
 def main():
     input_lines = sys.stdin.readlines()
