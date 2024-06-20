@@ -7,19 +7,16 @@ import sys
 
 class Solution:
     def solution(self, x):
-        # x_half = x//2
-        i = 1
-        if x == 0:
-            return 0
-        if x <= 2:
-            return 1
-        while i < x:
-            if i*i < x:
-                i += 1
-            elif i*i == x:
-                return i
+        l,r = 0, x+1
+
+        while l < r:
+            mid = (l+r)//2
+            if mid*mid > x:
+                r = mid
             else:
-                return i-1
+                l = mid + 1
+        
+        return l-1
 
 
 def main():
